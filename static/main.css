@@ -1,0 +1,244 @@
+body {
+	font-family: "Helvetica Neue", "HelveticaNeue";
+	margin-left: auto;
+	margin-right: auto;
+/* 	position: absolute; */
+	max-width:750px;
+	background: url("retina_wood.png");
+}
+
+h1 {
+	font-weight: 100;
+	font-size: 28pt;
+	font-family: "HelveticaNeue-Light", "HelveticaNeue", "Helvetica Neue", "Helvetica";
+	text-shadow: 0px 1px 1px #ddddcc;
+}
+
+#addForm {
+	display: none;
+}
+
+#deckContents {
+	display: none;
+}
+
+#newCard {
+	display: none;
+}
+
+#csvEditor {
+	display: none;
+}
+
+hr {
+	display: none;
+}
+
+.deck {
+	border-bottom: 2px groove wheat;
+}
+
+.deck, #newDeck {
+	padding: 10px;
+	margin: 10px;
+}
+
+.view {
+	text-align: center;
+	border-bottom: 1px solid rgba(241,241,241,0.50);
+	border-top: 1px solid white;
+	margin-top: auto;
+	margin-bottom: auto;
+	padding: 20px;
+	width: 50%;
+	box-shadow: 0px 1px 0px 0 #fff inset, 0 1px 2px 0 rgba(0,0,0,.8);
+	background: url("groovepaper.png");
+	margin-right: auto;
+	margin-left: auto;
+	font-size: xx-large;
+	font-weight: lighter;
+}
+
+#nextCard {
+	float: right;
+}
+
+.white {
+	color: rgba(252, 252, 252, 0.5);
+}
+
+
+.deleteDeckButton {
+/* 	display: none; */
+}
+
+button {
+	border-radius: 5px;
+/* 	border: 1px solid silver; */
+	border: 0;
+	background-image: -webkit-linear-gradient(-90deg , rgb(236,236,236) 0%, rgb(147,147,147) 100%);
+	-webkit-box-shadow: 0px 1px 0px 0 #fff inset, 0 1px 2px 0 rgba(0,0,0,.8);
+	text-shadow: 0px 1px 1px #cccccd;
+}
+
+button, input, .cardList span {
+	font-weight: 200;
+	font-size: 16px;
+}
+
+input {
+	min-height: 30px;
+}
+
+button {
+	min-height: 40px;
+}
+
+
+button:hover {
+/* 	border: 1px solid white; */
+	background-image: -webkit-linear-gradient(-90deg, rgba(241,240,240,1) 0%, rgba(181,181,181,1) 100%);
+}
+
+button:active {
+/* 	border: 1px solid black; */
+	background-image: -webkit-linear-gradient(-90deg , rgba(241,240,240,1) 0%, rgba(181,181,181,1) 100%);
+}
+
+.deckButton {
+	width: 200px;
+	height: 40px;
+}
+
+#addButton {
+	width: 150px;
+	height: 40px;
+}
+
+#csvSave {
+	display: block;
+}
+
+#csvText {
+	font-size: 16px;
+}
+
+td {
+	min-width: 166px;
+	margin: 2px;
+	padding-left: 3px;
+	padding-right: 7px;
+}
+
+tr:nth-child(odd) {
+	background-color: rgba(256, 256, 256, 0.1);
+}
+
+.openHeader {
+	background-color: rgba(150, 87, 20, 0.1);
+	border-left: 1px solid rgba(205, 150, 100, 0.8);
+	border-top: 1px solid rgba(205, 150, 100, 0.8);
+	border-right: 1px solid rgba(250, 200, 200, 0.8);
+	border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+}
+
+.modButtons, .cardDelete, #submitCard {
+	float: right;
+}
+
+/* Popover */
+
+#move_popover {
+	width: 300px;
+	left: 60px;
+	border:1px solid #000;
+	position:relative;
+	-moz-border-radius:11px;
+	-webkit-border-radius:11px;
+	border-radius:11px;
+	background-color: #575757;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#575757), to(#373737)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #575757, #373737); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background-image:    -moz-linear-gradient(top, #575757, #373737); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #575757, #373737); /* IE10 */
+	background-image:      -o-linear-gradient(top, #575757, #373737); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #575757, #373737);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#575757', EndColorStr='#373737'); /* IE6-IE9 */
+	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, 0.37), 0px 6px 18px 0px rgba(0, 0, 0, 0.95);
+	-moz-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, 0.37), 0px 6px 18px 0px rgba(0, 0, 0, 0.95);
+	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, 0.37), 0px 6px 18px 0px rgba(0, 0, 0, 0.95);
+	padding:5px;
+	display: none;
+}
+
+#move_popover .choices {
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	border:1px solid #000;
+	background:#fff;
+	-webkit-box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.4),inset 1px 1px 4px 0px rgba(0, 0, 0, 0.66);
+	-moz-box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.4),inset 1px 1px 4px 0px rgba(0, 0, 0, 0.66);
+	box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.4),inset 1px 1px 4px 0px rgba(0, 0, 0, 0.66);
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-padding-start: 0;
+}
+
+#move_popover .arrow {
+	position:absolute;
+	left:23px;
+	top:-9px;
+	width:25px;
+	height:10px;
+	overflow:hidden;
+}
+
+#move_popover .arrow span {
+	display:block;
+	width:14px;
+	height:14px;
+	background:red;
+	-webkit-transform: rotate(45deg) skew(-10deg, -10deg);
+	-webkit-transform: rotate(45deg) skew(-10deg, -10deg);  /* Saf3.1+, Chrome */
+	-moz-transform: rotate(45deg) skew(-10deg, -10deg);  /* FF3.5+ */
+	-ms-transform: rotate(45deg) skew(-10deg, -10deg);  /* IE9 */
+	-o-transform: rotate(45deg) skew(-10deg, -10deg);  /* Opera 10.5 */
+	transform: rotate(45deg) skew(-10deg, -10deg);  
+	filter: progid:DXImageTransform.Microsoft.Matrix(/* IE6–IE9 */ 
+	   M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476, sizingMethod='auto expand');
+	zoom: 1;
+	margin:1px 0 0 4px;
+	background:#575757;
+	border-left:1px solid #000;
+	border-top:1px solid #000;
+	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, 0.37);
+	-moz-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, 0.37);
+	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, 0.37);
+}
+
+#move_popover .choices li {
+	border-bottom:1px solid rgba(0, 0, 0, 0.1);
+    list-style-type:none;
+    padding:0;
+    margin:0;
+    font-weight:bold;
+    font-size:16px;
+    line-height:46px;
+    padding:0 0 0 15px;
+    font-family:arial;
+}
+
+#move_popover .choice li:last-child {
+	border-bottom: none;
+}
+
+#move_popover .currentDeck:before {
+	/* background-color: blue; */
+	content: "✔	";
+}
+
+
+
+
+

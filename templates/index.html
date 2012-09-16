@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html manifest="{{url_for('static', filename='manifest.manifest')}}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{url_for('static', filename='apple-touch-icon.png')}}" />
+		<meta name = "viewport" content = "width = device-width">
+		<title>Three Sides</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" title="mainCSS" type="text/css" media="screen" charset="utf-8">
+		<script src="{{url_for('static', filename='ucsv/ucsv-1.1.0-min.js')}}" charset="utf-8"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" charset="utf8"></script>
+		<script src="{{url_for('static', filename='startup.js')}}" charset="utf-8"></script>
+	</head>
+	<body>
+		<section id="deckSelect">
+			<h1>Three Sides: Decks</h1>
+			<div id ="deckList">
+			</div>
+			<div id="newDeck">
+				<button id="addButton">+</button>
+					<div id="addForm">
+<!-- 				<form accept-charset="utf-8" id="addForm"> -->
+					<label for="name_field">Name:</label><input id="name_field" type="text" name="name" value="New">
+					<label for="learnt">Also create 'learnt' deck</label><input id="learnt" type="checkbox" name="learnt" value="check">
+					<button id="addCancel">Cancel</button><button id="addSubmit">Create</button>
+					</div>
+<!-- 				</form> -->
+			</div>
+		</section>
+		<section id="deckContents">
+			<div id="banner"><button id="toDeckSelect">◀ Back</button></div>
+			<h1></h1>
+			<div id="firstView" class="view"></div>
+			<div id="secondView" class="view"></div>
+			<div id="thirdView" class="view"></div>
+			<br>
+			<button id="moveCard">Move⤵</button><button id="nextCard">Next ▶</button>
+			<div id="move_popover">
+				<div class="arrow"><span></span>
+				</div> 
+				<ul class="choices">
+					<li>test</li>
+					<li>another</li>
+				</ul>
+			</div>
+		</section>
+		<div id="newCard">
+			<input id="card_first" type="text" name="card_first" placeholder="Reading" autocapitalize="off" autocorrect="off">
+			<input id="card_second" type="text" name="card_second" placeholder="Character" autocapitalize="off" autocorrect="off">
+			<input id="card_third" type="text=" name="card_third" placeholder="Meaning" autocapitalize="off" autocorrect="off">
+			<button id="submitCard">Add</button>
+		</div>
+		<div id="csvEditor">
+			<textarea placeholder="No cards here!" cols="30" rows="10" id="csvText"></textarea>
+			<button id="csvSave">Save CSV</button>
+		</div>
+	</body>
+</html>
