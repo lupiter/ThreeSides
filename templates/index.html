@@ -8,7 +8,7 @@
 		<title>Three Sides</title>
 		<link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" title="mainCSS" type="text/css" media="screen" charset="utf-8">
 		<script src="{{url_for('static', filename='ucsv/ucsv-1.1.0-min.js')}}" charset="utf-8"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" charset="utf8"></script>
+		<script src="{{url_for('static', filename='jquery.min.js')}}" charset="utf8"></script>
 		<script src="{{url_for('static', filename='startup.js')}}" charset="utf-8"></script>
 	</head>
 	<body>
@@ -20,8 +20,8 @@
 				<button id="addButton">+</button>
 					<div id="addForm">
 <!-- 				<form accept-charset="utf-8" id="addForm"> -->
-					<label for="name_field">Name:</label><input id="name_field" type="text" name="name" value="New">
-					<label for="learnt">Also create 'learnt' deck</label><input id="learnt" type="checkbox" name="learnt" value="check">
+					<label for="name_field">Name:</label><input id="name_field" type="text" name="name" value="New"><br>
+					<input id="learnt" type="checkbox" name="learnt" value="check"><label for="learnt">Also create 'learnt' deck</label><br>
 					<button id="addCancel">Cancel</button><button id="addSubmit">Create</button>
 					</div>
 <!-- 				</form> -->

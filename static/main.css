@@ -12,10 +12,25 @@ h1 {
 	font-size: 28pt;
 	font-family: "HelveticaNeue-Light", "HelveticaNeue", "Helvetica Neue", "Helvetica";
 	text-shadow: 0px 1px 1px #ddddcc;
+	text-align: center;
+}
+
+section {
+	background-color: #f9fff9;
+	box-shadow: 0 0px 2px #667, 0 20px 100px #222;
+	border-radius: 5px;
+	border-top: 1px solid #FEE;
+	border-bottom: 1px solid #966;
+	padding: 5px;
+/* 	background-color: rgba(256, 252, 250, 0.7); */
 }
 
 #addForm {
 	display: none;
+}
+
+#addSubmit {
+	float: right;
 }
 
 #deckContents {
@@ -35,7 +50,7 @@ hr {
 }
 
 .deck {
-	border-bottom: 2px groove wheat;
+	border-bottom: 1px solid silver;
 }
 
 .deck, #newDeck {
@@ -45,18 +60,34 @@ hr {
 
 .view {
 	text-align: center;
-	border-bottom: 1px solid rgba(241,241,241,0.50);
+	border-bottom: 1px solid rgba(0,0,0,0.1);
 	border-top: 1px solid white;
 	margin-top: auto;
 	margin-bottom: auto;
 	padding: 20px;
 	width: 50%;
-	box-shadow: 0px 1px 0px 0 #fff inset, 0 1px 2px 0 rgba(0,0,0,.8);
+	box-shadow: 0px 1px 0px 0 #fff inset, 0 5px 20px 0 rgba(0,0,10,.4);
 	background: url("groovepaper.png");
 	margin-right: auto;
 	margin-left: auto;
 	font-size: xx-large;
 	font-weight: lighter;
+}
+
+#banner {
+/* 	float: left; */
+	position: absolute;
+}
+
+.cardList {
+	position: relative;
+	top: 10px;
+}
+
+table {
+	min-width: 50%;
+	margin: auto;
+	clear: both;
 }
 
 #nextCard {
@@ -76,9 +107,13 @@ button {
 	border-radius: 5px;
 /* 	border: 1px solid silver; */
 	border: 0;
-	background-image: -webkit-linear-gradient(-90deg , rgb(236,236,236) 0%, rgb(147,147,147) 100%);
-	-webkit-box-shadow: 0px 1px 0px 0 #fff inset, 0 1px 2px 0 rgba(0,0,0,.8);
-	text-shadow: 0px 1px 1px #cccccd;
+/* 	background-image: -webkit-linear-gradient(-90deg , rgb(236,236,236) 0%, rgb(147,147,147) 100%); */
+/* 	-webkit-box-shadow: 0px 1px 0px 0 #fff inset, 0 1px 2px 0 rgba(0,0,0,.8); */
+/* 	text-shadow: 0px 1px 1px #cccccd; */
+	box-shadow: 0px 1px 1px silver;
+	text-shadow: 0px 1px 1px white;
+	background: #F0F0F0;
+	border: 1px solid silver;
 }
 
 button, input, .cardList span {
@@ -113,6 +148,9 @@ button:active {
 #addButton {
 	width: 150px;
 	height: 40px;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
 }
 
 #csvSave {
@@ -121,10 +159,14 @@ button:active {
 
 #csvText {
 	font-size: 16px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
 }
 
 td {
-	min-width: 166px;
+/* 	min-width: 166px; */
 	margin: 2px;
 	padding-left: 3px;
 	padding-right: 7px;
