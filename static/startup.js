@@ -161,8 +161,8 @@ function allDeckHandler(transaction, results) {
 	});
 	
 	$(".deleteDeckButton").click(function() {
-		var deckID = $(this).parent().attr('id');
-		$(this).parent().remove();
+		var deckID = $(this).parent().parent().attr('id');
+		$(this).parent().parent().remove();
 		deleteDeck(myDB, deckID);
 	});
 	
