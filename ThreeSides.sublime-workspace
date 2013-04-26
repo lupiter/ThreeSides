@@ -1,0 +1,408 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"login",
+				"login_manager"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"for",
+				"for	For Loop"
+			],
+			[
+				"fo",
+				"forwardDeck"
+			],
+			[
+				"forward",
+				"forwardDeck"
+			],
+			[
+				"forw",
+				"forwardCard"
+			],
+			[
+				"F",
+				"ForeignKey"
+			],
+			[
+				"p",
+				"primary_key"
+			],
+			[
+				"table",
+				"tableName"
+			],
+			[
+				"sound",
+				"soundMap"
+			],
+			[
+				"j",
+				"javascript"
+			],
+			[
+				"clean",
+				"clean_html"
+			],
+			[
+				"total",
+				"totalDefence"
+			],
+			[
+				"ran",
+				"randomType"
+			],
+			[
+				"seq",
+				"seqType"
+			],
+			[
+				"c",
+				"cathyTeam"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"type",
+				"typeList"
+			],
+			[
+				"pro",
+				"proTeam"
+			],
+			[
+				"po",
+				"poke"
+			],
+			[
+				"ti",
+				"typeList"
+			],
+			[
+				"to",
+				"totalDefence"
+			],
+			[
+				"tota",
+				"totalAttack"
+			],
+			[
+				"poke",
+				"pokemon"
+			],
+			[
+				"new",
+				"newScore"
+			],
+			[
+				"rando",
+				"randomTeam"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"if",
+				"if	If Condition"
+			],
+			[
+				"sc",
+				"scoreTeam"
+			],
+			[
+				"opt",
+				"optimal"
+			],
+			[
+				"rand",
+				"randomPokemon"
+			],
+			[
+				"ty",
+				"typeList"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"deleteDe",
+				"deleteDeckButton"
+			],
+			[
+				"del",
+				"deleteCardsInDeck"
+			],
+			[
+				"er",
+				"errorHandler"
+			],
+			[
+				"nu",
+				"nullDataHandler"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"utf",
+				"utf-8"
+			],
+			[
+				"padd",
+				"padding-left"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 291.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/cathy/Desktop/userContent.css",
+		"/Users/cathy/Documents/Recipes/Lamb Potato Curry",
+		"/Users/cathy/Sites/ThreeSides/migrate_db.py",
+		"/Users/cathy/Sites/ThreeSides/make_db.py",
+		"/Users/cathy/Sites/ThreeSides/config.py",
+		"/Users/cathy/Sites/ThreeSides/app/models.py",
+		"/Users/cathy/Sites/ThreeSides/app/static/manifest.manifest",
+		"/Users/cathy/Sites/ThreeSides/app/static/startup.js",
+		"/Users/cathy/Sites/ThreeSides/app/templates/index.html",
+		"/Users/cathy/Sites/ThreeSides/app/__init__.py",
+		"/Users/cathy/Sites/ThreeSides/app/server.py",
+		"/Users/cathy/Sites/ThreeSides/run.py",
+		"/Users/cathy/Documents/Stories/traitor.md",
+		"/Users/cathy/Sites/ThreeSides/app/templates/login.html",
+		"/Users/cathy/Sites/ThreeSides/app/static/license.txt",
+		"/Users/cathy/Library/Application Support/Sublime Text 2/Packages/User/Python.sublime-settings",
+		"/Users/cathy/Sites/ThreeSides/app/model.py",
+		"/Users/cathy/Sites/ThreeSides/app/config.py",
+		"/Users/cathy/Sites/ThreeSides/app/make_db.py",
+		"/Users/cathy/Sites/ThreeSides/app/index.html",
+		"/Users/cathy/Sites/ThreeSides/app/config.pyc",
+		"/Users/cathy/Sites/ThreeSides/__init__.py",
+		"/Users/cathy/Sites/ThreeSides/server.py",
+		"/Users/cathy/Sites/ThreeSides/model.py",
+		"/Users/cathy/Sites/Valo/pages/start.md",
+		"/Users/cathy/Sites/Valo/templates/page.html",
+		"/Users/cathy/Sites/Demo1/dungeon1.html",
+		"/Users/cathy/Sites/Valo/templates/base.html",
+		"/Users/cathy/Sites/Valo/server.py",
+		"/Users/cathy/Dev/debt.py",
+		"/Users/cathy/Downloads/National%20Debt%20-%20Sheet2-1.csv",
+		"/Users/cathy/Downloads/National%20Debt%20-%20Sheet2.csv",
+		"/Users/cathy/Dev/debt.csv",
+		"/Users/cathy/Dropbox/dmo.py",
+		"/Users/cathy/Sites/Valo/templates/index.html",
+		"/Users/cathy/Dropbox/PlainText/Recipes/Lasagne.md",
+		"/Users/cathy/Dev/cleanHTML.py",
+		"/Volumes/fwo/IDW60266.gml",
+		"/Users/cathy/Downloads/jaysalvat-buzz-05c96cc/README.md",
+		"/Users/cathy/Downloads/ljdump-master/oneDayImporter.py",
+		"/Users/cathy/Sites/ThreeSides/static/startup.js",
+		"/Users/cathy/Dev/pokePerfect.py",
+		"/Users/cathy/Sites/ThreeSides/static/manifest.manifest",
+		"/Users/cathy/Pictures/Photos & Photoshop/Sterio Pictures/PICT0062 copy.JPG",
+		"/Users/cathy/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/cathy/Library/Application Support/Sublime Text 2/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/cathy/Library/Application Support/Sublime Text 2/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/cathy/Library/Application Support/Sublime Text 2/Packages/SublimeLinter/README.md",
+		"/Users/cathy/Library/Application Support/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/Users/cathy/Dropbox/Cards.md",
+		"/Users/cathy/Downloads/ljdump-master/everbloom/L-1",
+		"/Users/cathy/Downloads/ljdump-master/ljdump.config.sample",
+		"/Users/cathy/Documents/Poetry/1.md",
+		"/Users/cathy/Documents/Blog/CasualFriday.md",
+		"/Users/cathy/Sites/ThreeSides/static/main.css",
+		"/Users/cathy/Sites/ThreeSides/templates/index.html",
+		"/Users/cathy/Sites/ThreeSides/README.md",
+		"/Users/cathy/Dropbox/PlainText/Recipes/Apple and Onion Pork with Parmesan Potatoes.txt",
+		"/Users/cathy/Documents/Stories/badPoetry.md",
+		"/Users/cathy/Documents/Stories/School.md",
+		"/Users/cathy/Documents/Stories/Barbarisim.md",
+		"/Users/cathy/Documents/Blog/Theft.md",
+		"/Users/cathy/Library/Application Support/Mou/CSS/Byword.css",
+		"/Users/cathy/Library/Application Support/Mou/CSS/Solarized (Dark).css"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$",
+			"\"",
+			"noodles",
+			"radius",
+			"border-radius",
+			"td",
+			"font-size",
+			"45px",
+			"input",
+			"font-size",
+			"49",
+			"45",
+			"none",
+			"blockquote"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"pasta"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 111.0,
+	"status_bar_visible": true
+}

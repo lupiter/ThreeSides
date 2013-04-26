@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="{{url_for('static', filename='manifest.manifest')}}">
+<html> {# manifest="{{url_for('static', filename='manifest.manifest')}}"> #}
 	<head>
 		<meta charset="utf-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,6 +12,13 @@
 		<script src="{{url_for('static', filename='startup.js')}}" charset="utf-8"></script>
 	</head>
 	<body>
+		<header>
+			{% if not user %}
+				<a href="/login">Sign in with Twitter</a>
+			{% else %}
+				@{{user}} [<a href="/logout">sign out</a>]
+			{% endif %}
+		</header>
 		<section id="deckSelect">
 			<h1>Three Sides: Decks</h1>
 			<div id ="deckList">
@@ -30,9 +37,11 @@
 		<section id="deckContents">
 			<div id="banner"><button id="toDeckSelect">◀ Back</button></div>
 			<h1></h1>
-			<div id="firstView" class="view"></div>
-			<div id="secondView" class="view"></div>
-			<div id="thirdView" class="view"></div>
+			<div id="cards">
+				<div id="firstView" class="view"></div>
+				<div id="secondView" class="view"></div>
+				<div id="thirdView" class="view"></div>
+			</div>
 			<br>
 			<button id="moveCard">Move⤵</button><button id="nextCard">Next ▶</button>
 			<div id="move_popover">

@@ -1,0 +1,20 @@
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+SECRET_KEY = """7wTj6nPZb60XiAQCDAuxYP/NeEvtKZTODqWGjORiuHjeb2UInhogWeQG7ZLHbwNx
+vrnBniWBAoGBAMvY+8AET49/yk6bvUMwMvAj5tBdhC9LMViDvKpLWRLFg81nvi9v
+dkUN9w3WDKc+lK5d+2WAwhawWVUtrXm3QLOnuJ9NW0p9ZTSTVKC6xIIq/PWnR698
+C85thhOXOLArJThXJ6/4t8Yzl7Ucx/i0z7MrGpbyUtvD0easy6y7duXVAoGBAMAs
+8chcOKkw37TvVWxIbQmKj7DrF2UHH36in6PzAevk2oUxf0+oQkXPKfVVhi2QrxH7
+TLQiQieqrotOg+OrMy86qBkuJ172HWJhgIjm8naiFEiLm0Opgl6SIrfP1ugInDyD
+pdTxtR8txT6zitWA9sN5/3COYDqBb+8HZZl99DvXAoGAMedQ2lUz1QGH2W6vCr/F
++JwRaXk7Xwidb/nwOhBwIfRQq/x1xs8WuRkOHkkEl/zuETHY1aSL31oUxJGGIoIG
+SPUKcZVSgA3qtNBMq3yNlwBHJSxqlD9d9I9Df5BJxHcLiZtsj9vnwZHn1eLR4cUC
+A+7Nd56jQkHSJRKwWf0awnECgYEAlRdJTQQfAUPlil3Ti/p0fV5+M+dvcvWfvYM1
+DuDMsNIPph3Mg2QqZjZeevMq8da5u92WmHmrkVKdr33uXIbJYu7C0yY3bTjLezPh
+oFRr7xW3XsDQaCHt/qipPqmENOfZLimEUjxjJBlCWW65WwJ+bxEK16vdhAY/bNX0
+QKyy+mkCgYA46LNtpYvaAw2gf2tzRKd/Bcs8UrZRAOrXaV7WXKr//lpBgFXgg/cE
+1lxVvrlLPEUah5fFzsUbmXjVy/QUGHLjKbs6tBy02uJNazHjrt+1DivQXbF/8ieh
+egp1ZCO3tDyYFdxPUMCIn4GbLQ3TOa3mPGjHpgFqszRLL6JE9zdzWQ=="""
