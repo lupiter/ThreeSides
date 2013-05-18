@@ -7,7 +7,8 @@ ROLE_USER_EA = 1
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.UnicodeText, index=True, unique=True)
+    twitter_id = db.Column(db.Integer, index=True, unique=True)
+    username = db.Column(db.UnicodeText, index=True)
     role = db.Column(db.SmallInteger, default=ROLE_USER)
     decks = db.relationship('Deck', backref='owner', lazy='dynamic')
     cards = db.relationship('Card', backref='owner', lazy='dynamic')

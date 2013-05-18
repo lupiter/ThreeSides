@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html> {# manifest="{{url_for('static', filename='manifest.manifest')}}"> #}
+<html {# manifest="{{url_for('static', filename='manifest.manifest')}}" #} >
 	<head>
 		<meta charset="utf-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{url_for('static', filename='apple-touch-icon.png')}}" />
+		<!-- <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{url_for('static', filename='apple-touch-icon.png')}}" /> -->
+		<link rel="apple-touch-icon-precomposed" href="{{url_for('static', filename='57.png')}}" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{url_for('static', filename='72.png')}}" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{url_for('static', filename='114.png')}}" />
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{url_for('static', filename='144.png')}}" />
+		<link rel="icon" href="{{url_for('static', filename='favicon2.png')}}" />
 		<meta name = "viewport" content = "width = device-width">
 		<title>Three Sides</title>
 		<link rel="stylesheet" href="{{url_for('static', filename='main.css')}}" title="mainCSS" type="text/css" media="screen" charset="utf-8">
@@ -13,14 +18,13 @@
 	</head>
 	<body>
 		<header>
-			{% if not user %}
-				<a href="/login">Sign in with Twitter</a>
-			{% else %}
-				@{{user}} [<a href="/logout">sign out</a>]
-			{% endif %}
+			<a class="button aboutButton" href="">about</a>
+			<a class="button loginButton" href="/login" target="">Sign in with Twitter</a>
+			<a class="button logoutButton" href="/logout" target="">sign out</a><span class="username logoutButton">@{{user}}</span><span class="isEA logoutButton" title="Early Adoptor">&#x2b50;</span>
+			<a class="button disabled offlineButton">Offline</a>
 		</header>
 		<section id="deckSelect">
-			<h1>Three Sides: Decks</h1>
+			<h1><b>三</b> Three Sides</h1>
 			<div id ="deckList">
 			</div>
 			<div id="newDeck">
@@ -60,8 +64,33 @@
 			<button id="submitCard">Add</button>
 		</div>
 		<div id="csvEditor">
-			<textarea placeholder="No cards here!" cols="30" rows="10" id="csvText"></textarea>
+			<textarea placeholder="No cards here!" cols="30" rows="10" id="csvText" autocapitalize="off" autocorrect="off"></textarea>
 			<button id="csvSave">Save CSV</button>
 		</div>
+		<div id="about">
+			<button class="aboutClose">close</button>
+			<h1>About Three Sides</h1>
+			<p>Three Sides is a web application for language learning. It lets you make decks of three-sided flashcards, and go through them. If you're learning a language with a different writing system, multiple writing systems, or through a second language, Three Sides is designed for you. 
+
+			<p>It's also designed to be used offline, on phones and iPads. If you add Three Sides to your homescreen, it will work even when you've got no internet.
+
+			<h2>Sign In?</h2>
+			<p>You don't need to sign in to use Three Sides. All your cards are actually stored in your browser, so if you come back they'll still be here. BUT! If you clear your cache, those cards are gone. Also, if you sign in Three Sides can sync your cards everywhere else you use it.
+
+			<h2>How It Works</h2>
+			<p>First you need a deck. Press the "+" button to make a new deck, and give it a name like "Modern Japanese A". There's a checkbox to also make an extra deck to move cards to once you've learnt them. Now press "Edit" next to your new deck.
+
+			<p>You can either paste cards in as CSV (which you can export from Excel or Numbers), or enter them one at a time. When you're done adding cards, press "Done".
+
+			<p>To test yourself, press the name of your deck. This will show you a random card from your deck, with two of the three sides blanked out. Press each side to show or hide it. For another card, press next. There's also a quick "Move" button so you can put a card you've mastered into another deck, maybe for review for the final exam!
+
+			<h2>Examples</h2>
+			<p>You're learning Japanese, and you need to learn the word for "today". You need to know how it's written (今日), how it's said (きょう), and what it means. With traditional flash cards, you could put the kanji with furigana on one side, and the English on the other. Or you could make three flash cards: English & kanji, English & hiragana, kanji & hiragana. With Three Sides, you make one card. Three Sides will show you one side, and you can hide and show each side to test yourself.
+
+			<p>You're learning German at school, you're studying at an English school, but your first language is Mandarin. You can have all three words&mdash;German, English, and Mandarin&mdash;on a single flashcard.
+		</div>
+		<footer>
+			Made by @everbloom<br><a href="https://twitter.com/intent/tweet?screen_name=everbloom" data-dnt="true" data-text="Thanks!" data-related="everbloom:The Developer" class="twitter-mention-button" data-lang="en">@everbloom</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</footer>
 	</body>
 </html>

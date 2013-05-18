@@ -1,9 +1,17 @@
 CACHE MANIFEST
-# Version 0.1.66
-# CACHE:
+# Version 0.1.78
 NETWORK:
+	*
+	/login
+	/logout
+	/oauth_authorized
+FALLBACK:
+	/sync /empty.json
+	/status /offline
+CACHE:
 	/
 	main.css
+	status.css
 	startup.js
 	jquery.min.js
 	retina_wood.png
@@ -11,3 +19,7 @@ NETWORK:
 	apple-touch-icon.png
 	ucsv/ucsv-1.1.0.js
 	ucsv/ucsv-1.1.0-min.js
+	114.png
+	144.png
+	72.png
+	57.png

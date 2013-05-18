@@ -14,7 +14,44 @@ function upgradeDB(transaction) {
 	// console.log("d");
 }
 
+function doFailAjax(jqXHR, textStatus, errorThrown) {
+	console.log(textStatus);
+	console.log(errorThrown);
+}
+
+function onUpdateReady() {
+	window.applicationCache.swapCache();
+}
+
 $(function(){
+
+	$(".loginButton").click(function(){
+		window.location.href = $(this).attr("href");
+		return false;
+	});
+
+	$.getJSON("/status", function(data){
+		$(".username").text(data.user);
+		if (!data.online) {
+			$(".loginButton").hide();
+			$(".logoutButton").hide();
+		} else {
+			$(".offlineButton").hide();
+			if (data.user) {
+				$(".logoutButton").show();
+				$(".isEA").toggle(data.is_EA);
+				$(".loginButton").hide();
+			} else {
+				$(".loginButton").show();
+				$(".logoutButton").hide();
+			}
+		}
+	});
+
+	window.applicationCache.addEventListener('updateready', onUpdateReady);
+	if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+		onUpdateReady();
+	}
 
 	var shortName = 'ThreeSides';
 	var version = 3;
@@ -82,6 +119,14 @@ $(function(){
 	$("ul.choices li").click(function() {
 		listClick($(this));
 	});
+
+	$(".aboutButton").click(function() {
+		$("#about").show();
+		$(".aboutClose").click(function() {
+			$("#about").hide();
+		});
+		return false;
+	});
 });
 
 function syncNow(data, type) {
@@ -106,15 +151,15 @@ function syncNow(data, type) {
 				var row = data.rows.item(i);
 				if (row) ids.push(row["id"]);
 			}
-			console.log("syncing " + type);
+			// console.log("syncing " + type);
 			myDB.transaction(function(transaction) {
-				console.log("syncing " + ids);
+				// console.log("syncing " + ids);
 				query = "update " + type + "s set offline = 0 where id in (" + ids.join(",") + ");";
 				transaction.executeSql(query, [], function(){
-					console.log(query + " yo " + type);
+					// console.log(query + " yo " + type);
 				}, errorHandler);
 			});
-		});
+		}).fail(doFailAjax);
 	}
 }
 
@@ -147,20 +192,22 @@ function nullDataHandler(transaction, results) {
 }
 
 function cardHandler(transaction, results) {
-	max = results.rows.length;
-	choice = Math.floor(Math.random() * max);
-	visible = Math.floor(Math.random() * 3);
-	var card = results.rows.item(choice);
-	$("#deckContents h1").attr('id', card['id']);
-	$("#firstView").text(card['first']);
-	$("#secondView").text(card['second']);
-	$("#thirdView").text(card['third']);
-	views = [$("#firstView"), $("#secondView"), $("#thirdView")];
-	for(var i=0; i<3; i++) {
-		if(i==visible && views[i].hasClass("white")) {
-			views[i].removeClass("white");
-		} else if (i!=visible && !views[i].hasClass("white")) {
-			views[i].addClass("white");
+	var max = results.rows.length;
+	if (max > 0) {
+		var choice = Math.floor(Math.random() * max);
+		var visible = Math.floor(Math.random() * 3);
+		var card = results.rows.item(choice);
+		$("#deckContents h1").attr('id', card['id']);
+		$("#firstView").text(card['first']);
+		$("#secondView").text(card['second']);
+		$("#thirdView").text(card['third']);
+		views = [$("#firstView"), $("#secondView"), $("#thirdView")];
+		for(var i=0; i<3; i++) {
+			if(i==visible && views[i].hasClass("white")) {
+				views[i].removeClass("white");
+			} else if (i!=visible && !views[i].hasClass("white")) {
+				views[i].addClass("white");
+			}
 		}
 	}
 }
@@ -308,56 +355,59 @@ function listDecks(db) {
 	db.transaction(function(transaction) {
 		transaction.executeSql('select * from decks where offline = 1;', [], function(trans, results){
 			syncNow(results, 'deck');
-			console.log('sync deck offline ' + results.rows.length);
-		}, errorHandler);
-		transaction.executeSql('select * from cards where offline = 1;', [], function(trans, results){
-			syncNow(results, 'card');
-			console.log('sync card offline ' + results.rows.length);
-		}, errorHandler);
-		transaction.executeSql('select * from decks where to_delete = 1;', [], function(trans, results){
-			sendDelete(results, 'deck');
-			console.log('delete deck offline ' + results.rows.length);
-		}, errorHandler);
-		transaction.executeSql('select * from cards where to_delete = 1;', [], function(trans, results){
-			sendDelete(results, 'card');
-			console.log('delete card offline ' + results.rows.length);
-		}, errorHandler);
-	});
-	console.log("send updates");
-	db.transaction(function(transaction) {
-		transaction.executeSql('select id from decks where offline = 1 union select id from cards where offline = 1 union select id from decks where to_delete = 1 union select id from cards where to_delete = 1;', [], function(trans, results){
-			if(results.rows.length > 0) {
-				// bail
-				console.log("bail");
-			} else {
-				// Drop and download
-				console.log("going to drop all");
-				trans.executeSql('delete from cards;', [], function(trans, results){
-					trans.executeSql('delete from decks;', [], function(trans, results){
-						$.getJSON('sync/deck', function(data){
-							console.log(data);
-							for (var j = data.decks.length - 1; j>= 0; j--) {
-								var deck = data.decks[j];
-								addDeckID(db, deck.name, deck.id);
-							}
-							printListDecks(db);
-						}).done(function(){
-							$.getJSON('sync/card', function(data){
-								console.log(data);
-								for (var i = data.cards.length - 1; i >= 0; i--) {
-									var card = data.cards[i];
-									addCardID(db, card.first, card.second, card.third, card.deckid, card.id);
+			// console.log('sync deck offline ' + results.rows.length);
+			transaction.executeSql('select * from cards where offline = 1;', [], function(trans, results){
+				syncNow(results, 'card');
+				// console.log('sync card offline ' + results.rows.length);
+				transaction.executeSql('select * from decks where to_delete = 1;', [], function(trans, results){
+					sendDelete(results, 'deck');
+					// console.log('delete deck offline ' + results.rows.length);
+					transaction.executeSql('select * from cards where to_delete = 1;', [], function(trans, results){
+						sendDelete(results, 'card');
+						// console.log('delete card offline ' + results.rows.length);
+						console.log("send updates");
+						db.transaction(function(transaction) {
+							transaction.executeSql('select id from decks where offline = 1 union select id from cards where offline = 1 union select id from decks where to_delete = 1 union select id from cards where to_delete = 1;', [], function(trans, results){
+								if(results.rows.length > 0) {
+									// bail
+									console.log("bail");
+								} else {
+									// Drop and download
+									console.log("going to drop all");
+									trans.executeSql('delete from cards;', [], function(trans, results){
+										trans.executeSql('delete from decks;', [], function(trans, results){
+											$.getJSON('sync/deck', function(data){
+												console.log(data);
+												if (data.decks) {
+													for (var j = data.decks.length - 1; j>= 0; j--) {
+														var deck = data.decks[j];
+														addDeckID(db, deck.name, deck.id);
+													}
+													printListDecks(db);
+												}
+											}).done(function(){
+												$.getJSON('sync/card', function(data){
+													console.log(data);
+													if (data.decks) {
+														for (var i = data.cards.length - 1; i >= 0; i--) {
+															var card = data.cards[i];
+															addCardID(db, card.first, card.second, card.third, card.deckid, card.id);
+														}
+														printListDecks(db);
+													}
+												});
+											});
+										}, errorHandler);
+									}, errorHandler);
 								}
 								printListDecks(db);
-							});
+							}, errorHandler);
 						});
 					}, errorHandler);
 				}, errorHandler);
-			}
-			printListDecks(db);
+			}, errorHandler);
 		}, errorHandler);
 	});
-
 }
 
 function printListDecks(db) {
@@ -373,21 +423,21 @@ function sendDelete(data, type) {
 			var row = data.rows.item(i);
 			if (row) ids.push(row["id"]);
 		}
-		console.log("will delete ...");
-		console.log(ids);
+		// console.log("will delete ...");
+		// console.log(ids);
 		$.ajax({
 			url: "sync/" + type + "?id=" + ids.join(),
 			type: 'DELETE'
 		}).done(function(){
-			console.log("delete");
+			// console.log("delete");
 			myDB.transaction(function(transaction) {
-				console.log(ids);
+				// console.log(ids);
 				query = 'delete from ' + type + 's where id in (' + ids.join(',') + ");";
 				transaction.executeSql(query, [], function(){
-					console.log(query);
+					// console.log(query);
 				}, errorHandler);
 			});
-		});
+		}).fail(doFailAjax);
 	}
 }
 

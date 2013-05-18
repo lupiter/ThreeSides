@@ -1,6 +1,8 @@
 from flask import render_template, send_from_directory, g, session, flash, redirect, url_for, request, jsonify
 from flask_oauth import OAuth
 from flask_login import login_required, login_user, logout_user, current_user
+from datetime import datetime
+from sqlalchemy import func
 import os
 import sqlalchemy.exc
 from app import app, models, db, login_manager
@@ -29,24 +31,39 @@ def load_user(userid):
     return models.User.query.get(userid)
 
 
+@app.route("/status")
+def status():
+    user, is_EA = None, False
+    if current_user.is_authenticated():
+        user = current_user.username
+        is_EA = current_user.role == models.ROLE_USER_EA
+    return jsonify(user=user, is_EA=is_EA, online=True)
+
+
+@app.route("/offline")
+def offline():
+    user, is_EA = None, False
+    if current_user.is_authenticated():
+        user = current_user.username
+        is_EA = current_user.role == models.ROLE_USER_EA
+    return jsonify(user=user, is_EA=is_EA, online=False)
+
+
 @app.route('/oauth_authorized')
 @twitter.authorized_handler
 def twitter_authorized(resp):
-    next_url = request.args.get('next') or url_for('.index')
+    next_url = request.args.get('next') or url_for('home')
     if resp is None:
         flash(u'You denied the request to sign in.')
         return redirect(next_url)
-
-    # session['twitter_token'] = (
-    #     resp['oauth_token'],
-    #     resp['oauth_token_secret']
-    # )
-    # session['twitter_user'] = resp['screen_name']
-    # flash('You were signed in as %s' % resp['screen_name'])
-    user = models.User.query.filter_by(username=resp['screen_name']).first()
+    user = models.User.query.filter_by(twitter_id=resp['user_id']).first()
     if not user:
-        user = models.User(username=resp['screen_name'], role=models.ROLE_USER)
-        db.session.add(user)
+        rows = session.query(func.count(models.User.id)).scalar()
+        role = models.ROLE_USER_EA
+        if rows < 10:
+            role = models.ROLE_USER_EA
+        user = models.User(username=resp['screen_name'], twitter_id=resp['user_id'], role=role)
+        db.session.add(user),
         db.session.commit()
     login_user(user)
     session['user_id'] = user.id
@@ -84,24 +101,32 @@ def after_request(response):
 
 @app.route("/")
 def home():
-    user = None
+    user, is_EA = None, False
     if current_user.is_authenticated():
         user = current_user.username
-    return render_template("index.html", user=user)
+        is_EA = current_user.role == models.ROLE_USER_EA
+    return render_template("index.html", user=user, is_EA=is_EA)
+
+
+@app.route("/empty.json")
+def empty():
+    return jsonify(ok=True)
 
 
 @app.route("/sync/<types>", methods=['GET', 'POST', 'PUT', 'DELETE'])
 @login_required
 def sync(types="card"):
+    returns = "OK"
+    current_user.last_sync = datetime.utcnow()
     if request.method == 'GET':
         if types == "card":
             cards = models.Card.query.filter_by(user_id=g.user.id).all()
-            return jsonify(cards=[d.jsony() for d in cards])
+            returns = jsonify(cards=[d.jsony() for d in cards])
         else:
             decks = models.Deck.query.filter_by(user_id=g.user.id).all()
             decks = [d.jsony() for d in decks]
             # print decks
-            return jsonify(decks=decks)
+            returns = jsonify(decks=decks)
     if request.method == 'POST':
         for obj in request.json:
             if types == "card":
@@ -119,6 +144,7 @@ def sync(types="card"):
                                         deckid=obj['deckid'],
                                         user_id=g.user.id)
                         db.session.add(c)
+                    print c
             else:
                 d = models.Deck.query.get(obj['id'])
                 if d:
@@ -147,8 +173,7 @@ def sync(types="card"):
         db.session.commit()
     except sqlalchemy.exc.InterfaceError as e:
         print e
-    return "OK"
-    # request.method
+    return returns
 
 
 @app.route("/apple-touch-icon.png")

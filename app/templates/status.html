@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<link rel="stylesheet" href="{{url_for('static', filename='status.css')}}" title="mainCSS" type="text/css" media="screen" charset="utf-8">
+</head>
+<body>
+{% if not user and online %}
+	<a class="button" href="/login" target="">Sign in with Twitter</a>
+{% else %}
+	{% if online %}
+	<a class="button" href="/logout" target="">sign out</a><span class="username">@{{user}}</span>{% if is_EA %}<span class="isEA" title="Early Adoptor">&#x2b50;</span>{% endif %}
+	{% else %}
+	<a class="button disabled">Offline</a>
+	{% endif %}
+{% endif %}
+</body>
+</html>
