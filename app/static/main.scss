@@ -2,7 +2,7 @@
 
 body {
 
-	background-image: url("retina_wood.png");
+	background-image: url("retina_wood_3.png");
 	background-size: 256px;
 }
 
@@ -15,7 +15,12 @@ section {
 	padding: 5px;
 	z-index: 1;
 	position: relative;
-	top: -23px;
+	// top: -23px;
+}
+
+a {
+	color: #667;
+	text-decoration: none;
 }
 
 #addForm {
@@ -142,7 +147,6 @@ table {
 }
 
 td {
-/* 	min-width: 166px; */
 	margin: 2px;
 	padding-left: 3px;
 	padding-right: 7px;
@@ -153,11 +157,6 @@ tr:nth-child(odd) {
 }
 
 .openHeader {
-	/*background-color: rgba(150, 87, 20, 0.1);
-	border-left: 1px solid rgba(205, 150, 100, 0.8);
-	border-top: 1px solid rgba(205, 150, 100, 0.8);
-	border-right: 1px solid rgba(250, 200, 200, 0.8);
-	border-bottom: 1px solid rgba(200, 200, 200, 0.8);*/
 	background-color: rgba(0, 0, 10, 0.1);
 	box-shadow: inset 0 1px 2px silver, 0 1px 2px white;
 }
@@ -220,8 +219,6 @@ tr:nth-child(odd) {
 	display:block;
 	width:14px;
 	height:14px;
-	/*background:red;*/
-	/*-webkit-transform: rotate(45deg) skew(-10deg, -10deg);*/
 	-webkit-transform: rotate(45deg) skew(-10deg, -10deg);  /* Saf3.1+, Chrome */
 	-moz-transform: rotate(45deg) skew(-10deg, -10deg);  /* FF3.5+ */
 	-ms-transform: rotate(45deg) skew(-10deg, -10deg);  /* IE9 */
@@ -256,28 +253,21 @@ tr:nth-child(odd) {
 }
 
 #move_popover .currentDeck:before {
-	/* background-color: blue; */
 	content: "✔	";
 }
-header {
-	width: auto;
-	text-align: left;
-	display: block;
-	padding: 2px;
-	a.aboutButton {
-		float: right;
-	}
 
-	a.aboutButton, a.loginButton {
-		margin-top: 2px;
-	}
-	/*top: 3px;*/
+a.aboutButton {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 2px;
 }
 
 footer {
 	font-size: 9pt;
 	font-weight: bold;
 	text-align: center;
+	margin-top: -23px;
 }
 
 

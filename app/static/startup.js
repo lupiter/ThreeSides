@@ -97,14 +97,22 @@ function errorHandler(transaction, error) {
 function nullDataHandler(transaction, results) {}
 
 function cardHandler(transaction, results) {
-	max = results.rows.length;
-	choice = Math.floor(Math.random() * max);
-	visible = Math.floor(Math.random() * 3);
-	var card = results.rows.item(choice);
+	var max = results.rows.length,
+	choice = Math.floor(Math.random() * max),
+	visible = Math.floor(Math.random() * 3),
+	card = results.rows.item(choice),
+	firstCard = card['first'],
+	secondCard = card['second'],
+	thirdCard = card['third'],
+	cards = [firstCard, secondCard, thirdCard];
+
+	while (cards[visible] === null)
+		visible = Math.floor(Math.random() * 3);
+
 	$("#deckContents h1").attr('id', card['id']);
-	$("#firstView").text(card['first']);
-	$("#secondView").text(card['second']);
-	$("#thirdView").text(card['third']);
+	$("#firstView").text((firstCard !== null) ? firstCard : '');
+	$("#secondView").text((secondCard !== null) ? secondCard : '');
+	$("#thirdView").text((thirdCard !== null) ? thirdCard : '');
 	views = [$("#firstView"), $("#secondView"), $("#thirdView")];
 	for(var i=0; i<3; i++) {
 		if(i==visible && views[i].hasClass("white")) {
@@ -125,7 +133,7 @@ function allCardHandler(transaction, results) {
 		for(var i=0; i<results.rows.length; i++) {
 			var row = results.rows.item(i);
 			deckID = row['deckid'];
-			cardList += '<tr><span id="'+row['id']+'"><td>'+row['first']+'</td><td>'+row['second']+'</td><td>'+row['third']
+			cardList += '<tr><span id="'+row['id']+'"><td>'+(row['first'] !== null ? row['first'] : '')+'</td><td>'+(row['second'] !== null ? row['second'] : '')+'</td><td>'+(row['third'] !== null ? row['third'] : '')
 				+'</td><td><button class="cardDelete">Delete</button></td></span></tr>';
 			csvArray.push([row['first'], row['second'],row['third']]);
 		}
