@@ -9,6 +9,8 @@ $(function(){
 	listDecks(myDB);
 	currentDeckID = 0;
 
+	$("#progress").hide();
+
 	$("#addButton").click(function(){
 		$("#addForm").show();
 		$("#addButton").hide();
@@ -215,10 +217,15 @@ function allDeckHandler(transaction, results) {
 		allCards(myDB, deckID);
 		$("#csvSave").click(function() {
 			// Import csv
+			$("#progress").show();
+			var progress = $(".progress-completed");
+			progress.width(2);
 			deleteCardsInDeck(myDB, deckID);
+			progresses = 0;
 			var cardArray = CSV.csvToArray($('#csvText').val());
+			maxProgress = cardArray.length;
 			for (var i = cardArray.length - 1; i >= 0; i--) {
-				addCard(myDB, cardArray[i][0], cardArray[i][1], cardArray[i][2], deckID);
+				addCard(myDB, cardArray[i][0], cardArray[i][1], cardArray[i][2], deckID, progressHandler);
 			}
 			// Refresh card list
 			refreshCardList(deckID);
@@ -233,6 +240,15 @@ function allDeckHandler(transaction, results) {
 		$('#deckSelect').hide();
 		randomCard(myDB, currentDeckID);
 	});
+}
+
+function progressHandler() {
+	progresses += 1;
+	var newWidth = String(progresses/maxProgress)*100 + "%";
+	// console.log(newWidth);
+	$(".progress-completed").width(newWidth);
+	if (progresses >= maxProgress -1)
+		$("#progress").hide();
 }
 
 function createTables(db) {
@@ -269,9 +285,11 @@ function deleteCardsInDeck(db, id) {
 	});
 }
 
-function addCard(db, first, second, third, deck) {
+function addCard(db, first, second, third, deck, handler) {
+	if (!handler)
+		handler = nullDataHandler;
 	db.transaction(function(transaction) {
-		transaction.executeSql('insert into cards(first, second, third, deckid) values (?, ?, ?, ?);', [first, second, third, deck], nullDataHandler, errorHandler);
+		transaction.executeSql('insert into cards(first, second, third, deckid) values (?, ?, ?, ?);', [first, second, third, deck], handler, errorHandler);
 	});
 }
 

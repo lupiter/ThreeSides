@@ -1,4 +1,8 @@
 
+$emphasis: #D41173;
+$base: #ddddcc;
+
+
 body {
 	font-family: "Helvetica Neue", "HelveticaNeue";
 	margin-left: auto;
@@ -9,14 +13,14 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: "HelveticaNeue-Light", "HelveticaNeue", "Helvetica Neue", "Helvetica";
-	text-shadow: 0 1px 1px #ddddcc;
+	text-shadow: 0 1px 1px $base;
 	border-bottom: 1px dashed #eee;
 	font-weight: 200;
 }
 
 h1 {
-	text-shadow: 0 -1px 1px #ddddcc, 0 1px 1px white;
-	color: #D41173;
+	text-shadow: 0 -1px 1px $base, 0 1px 1px white;
+	color: $emphasis;
 	font-weight: 100;
 	font-size: 28pt;
 	text-align: center;
@@ -47,7 +51,7 @@ button, .button {
 
 
 button:hover, .button:hover {
-	box-shadow: 0 0 5px #D41173, inset 0 1px 1px white;
+	box-shadow: 0 0 5px $emphasis, inset 0 1px 1px white;
 }
 
 button:active, .button:active {
