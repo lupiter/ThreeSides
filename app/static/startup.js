@@ -1,24 +1,24 @@
 $(function(){
 
 	var shortName = 'ThreeSides';
-	var version = 1.0;
+	var version = 3.0;
 	var displayName = "Three Sides flashcards database";
 	var maxSize = 65536;
 	myDB = openDatabase(shortName, version, displayName, maxSize);
 	createTables(myDB);
 	listDecks(myDB);
 	currentDeckID = 0;
-	
+
 	$("#addButton").click(function(){
 		$("#addForm").show();
 		$("#addButton").hide();
 	});
-	
+
 	$("#addCancel").click(function() {
 		$("#addButton").show();
 		$("#addForm").hide();
 	});
-	
+
 	$("#addSubmit").click(function() {
 		var name = $("#name_field").val();
 		addDeck(myDB, name);
@@ -27,38 +27,47 @@ $(function(){
 		$("#addButton").show();
 		$("#addForm").hide();
 	});
-	
+
 	$("#submitCard").click(function() {
 		var deckID = $('#newCard').parent().attr('id');
 		addCard(myDB, $('#card_first').val(), $('#card_second').val(), $('#card_third').val(), deckID);
 		refreshCardList(deckID);
 	});
-	
+
 	$("#toDeckSelect").click(function() {
 		$("#deckSelect").show();
 		$("#deckContents").hide();
 	});
-	
+
 	$("#nextCard").click(function() {
 		randomCard(myDB, currentDeckID);
 	});
-	
+
 	$(".view").click(function() {
 		$(this).toggleClass("white");
 	});
-	
+
 	$("#moveCard").click(function() {
-		$("#move_popover").fadeIn();
+		$("#move_popover").fadeToggle();
 		var thisDeck = $("#move_popover li."+currentDeckID);
 		if (!thisDeck.hasClass("currentDeck")) {
 			thisDeck.addClass("currentDeck");
 		}
 		$('#move_popover li').not(thisDeck).removeClass("currentDeck");
 	});
-	
+
 	$("ul.choices li").click(function() {
 		listClick($(this));
 	});
+
+		$(".aboutButton").click(function() {
+		$("#about").show();
+		$(".aboutClose").click(function() {
+			$("#about").hide();
+		});
+		return false;
+	});
+
 });
 
 function refreshCardList(deckID) {
@@ -99,12 +108,12 @@ function cardHandler(transaction, results) {
 	views = [$("#firstView"), $("#secondView"), $("#thirdView")];
 	for(var i=0; i<3; i++) {
 		if(i==visible && views[i].hasClass("white")) {
-			views[i].removeClass("white");	
+			views[i].removeClass("white");
 		} else if (i!=visible && !views[i].hasClass("white")) {
 			views[i].addClass("white");
 		}
 	}
-	
+
 }
 
 function allCardHandler(transaction, results) {
@@ -137,11 +146,11 @@ function allCardHandler(transaction, results) {
 
 function allDeckHandler(transaction, results) {
 
-/* 	var deckListContainer =  */
+/*	var deckListContainer =  */
 	var deckList = "";
 	var deckChangeList = "";
 	for(var i=0; i<results.rows.length; i++) {
-/* 		alert(results[i]); */
+/*	alert(results[i]); */
 		var row = results.rows.item(i);
 		deckList += '<div id="'+row['id']+'" class="deck"><button id="deck_'+row['id']+'" class="deckButton">'
 			+row['name']
@@ -150,28 +159,28 @@ function allDeckHandler(transaction, results) {
 			+'" class="cardList"></div><br></div>';
 		deckChangeList += '<li class="'+row['id']+'">'+row['name']+'</li>';
 	}
-	
+
 	$("#deckList").empty();
 	$("#deckList").prepend(deckList);
 	$("#move_popover .choices").empty();
 	$("#move_popover .choices").prepend(deckChangeList);
-	
+
 	$("ul.choices li").click(function() {
 		listClick($(this));
 	});
-	
+
 	$(".deleteDeckButton").click(function() {
 		var deckID = $(this).parent().parent().attr('id');
 		$(this).parent().parent().remove();
 		deleteDeck(myDB, deckID);
 	});
-	
+
 	$(".editDeckButton").click(function() {
 		var parent = $(this).parent().parent();
 		var deckID = parent.attr('id');
 		parent.toggleClass("openHeader");
 		$(this).hide();
-/* 		parent.prepend('<hr>'); */
+/*		parent.prepend('<hr>'); */
 		parent.append($("#newCard"));
 		parent.append($("#csvEditor"));
 		parent.children(".modButtons").append('<button id="deckEditDone">Done</button>');
@@ -181,7 +190,7 @@ function allDeckHandler(transaction, results) {
 		$("#csvEditor").show();
 		parent.children(".cardList").show();
 		parent.children("hr").show();
-/* 		parent.append("<hr>"); */
+/*		parent.append("<hr>"); */
 		$("#deckEditDone").click(function() {
 			var parent = $(this).parent().parent();
 			parent.children(".cardList").hide();
@@ -202,12 +211,12 @@ function allDeckHandler(transaction, results) {
 			var cardArray = CSV.csvToArray($('#csvText').val());
 			for (var i = cardArray.length - 1; i >= 0; i--) {
 				addCard(myDB, cardArray[i][0], cardArray[i][1], cardArray[i][2], deckID);
-			};
+			}
 			// Refresh card list
 			refreshCardList(deckID);
 		});
 	});
-	
+
 	$(".deckButton").click(function() {
 		currentDeckID = $(this).parent().attr('id');
 		var deckName = $(this).text();
@@ -223,7 +232,7 @@ function createTables(db) {
 		transaction.executeSql(
 			'create table if not exists decks(id integer not null primary key autoincrement, name text not null default "Deck");', [], nullDataHandler, errorHandler);
 		transaction.executeSql(
-			'create table if not exists cards(id integer not null primary key autoincrement, deckid integer not null, first text, second text, third text, foreign key(deckid) references decks(id));', 
+			'create table if not exists cards(id integer not null primary key autoincrement, deckid integer not null, first text, second text, third text, foreign key(deckid) references decks(id));',
 			[], nullDataHandler, errorHandler);
 	});
 }
