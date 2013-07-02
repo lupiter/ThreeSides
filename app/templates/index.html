@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<!-- <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{url_for('static', filename='apple-touch-icon.png')}}" /> -->
 		<link rel="apple-touch-icon-precomposed" href="{{url_for('static', filename='57.png')}}" />
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{url_for('static', filename='72.png')}}" />
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{url_for('static', filename='114.png')}}" />
@@ -19,9 +18,6 @@
 	<body>
 		<header>
 			<a class="button aboutButton" href="">about</a>
-			<!-- <a class="button loginButton" href="/login" target="">Sign in with Twitter</a> -->
-			<!-- <a class="button logoutButton" href="/logout" target="">sign out</a><span class="username logoutButton">@{{user}}</span><span class="isEA logoutButton" title="Early Adoptor">&#x2b50;</span> -->
-			<!-- <a class="button disabled offlineButton">Offline</a> -->
 		</header>
 		<section id="deckSelect">
 			<h1><b>三</b> Three Sides</h1>
@@ -30,12 +26,10 @@
 			<div id="newDeck">
 				<button id="addButton">+</button>
 					<div id="addForm">
-<!-- 				<form accept-charset="utf-8" id="addForm"> -->
 					<label for="name_field">Name:</label><input id="name_field" type="text" name="name" value="New"><br>
 					<input id="learnt" type="checkbox" name="learnt" value="check"><label for="learnt">Also create 'learnt' deck</label><br>
 					<button id="addCancel">Cancel</button><button id="addSubmit">Create</button>
 					</div>
-<!-- 				</form> -->
 			</div>
 		</section>
 		<section id="deckContents">
