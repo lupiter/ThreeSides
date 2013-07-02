@@ -7,7 +7,8 @@ body {
 }
 
 section {
-	background-color: #f9fff9;
+	// background-color: #f9fff9;
+	background-color: white;
 	box-shadow: 0 0 2px #667; /*, 0 20px 100px #222;*/
 	border-radius: 5px;
 	/*border-top: 1px solid #FEE;*/
@@ -127,9 +128,9 @@ hr {
 }
 
 #banner {
-/* 	float: left; */
+ 	float: left;
 	position: relative;
-	top: 30px;
+	// top: 30px;
 }
 
 .cardList {

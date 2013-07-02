@@ -18,7 +18,10 @@ h1 {
   font-size: 28pt;
   text-align: center;
   margin: 0;
-  padding: 0.3em 0 0.3em 0; }
+  padding: 0.3em 0 0.3em 0;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto; }
 
 button, .button {
   border-radius: 5px;
@@ -67,7 +70,7 @@ body {
   background-size: 256px; }
 
 section {
-  background-color: #f9fff9;
+  background-color: white;
   box-shadow: 0 0 2px #667;
   /*, 0 20px 100px #222;*/
   border-radius: 5px;
@@ -168,9 +171,8 @@ hr {
   font-weight: lighter; }
 
 #banner {
-  /* 	float: left; */
-  position: relative;
-  top: 30px; }
+  float: left;
+  position: relative; }
 
 .cardList {
   position: relative;
